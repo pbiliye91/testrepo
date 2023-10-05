@@ -69,7 +69,7 @@ stages:
       # commandOptions: "--var-file=terraform.tfvars --out=tfplan"
         environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
         env:
-         TF_VAR_vm_admin_password: $(vm_admin_password)
+          TF_VAR_vm_admin_password: $(vm_admin_password)
 - stage: deploy
   jobs:
     - deployment: DEPLOY
