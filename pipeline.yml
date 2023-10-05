@@ -12,7 +12,6 @@ parameters:
       - windows-latest
       - ubuntu-latest
 variables:
-- group: vm_login_password
   ResourceGroup: mcmd-dev-rg
   StorageAccount: samlinkstorage1234
   Container: test-vm
