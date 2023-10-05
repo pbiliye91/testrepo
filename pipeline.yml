@@ -3,7 +3,7 @@ parameters:
     displayName: Service Connection Name Follows Below:-
     default: tes-vm-sc
     values:
-      - ctes-vm-sc
+      - tes-vm-sc
   - name: image
     displayName: PoolImage
     default: windows-latest
