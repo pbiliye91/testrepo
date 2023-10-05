@@ -69,22 +69,7 @@ stages:
         scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          $blob_exists = az storage blob exists --container-name test-vm --name test-vm/terraform.tfstate --account-name samlinkstorage1234 --query exists --output tsv
-          Write-Host "Blob exists: $blob_exists"
-
-          if ($blob_exists -eq "true") {
-            $lease_break_output = az storage blob lease break --container-name test-vm --blob-name test-vm/terraform.tfstate --account-name samlinkstorage1234 2>&1
-            if ($lease_break_output -like "*LeaseNotPresentWithLeaseOperation*") {
-              Write-Host "The blob does not have an active lease. Skipping lease break."
-            } else {
-              Write-Host "Blob lease broken successfully."
-            }
-          } else {
-            Write-Host "The terraform.tfstate blob does not exist. Skipping lease break."
-          }
-
-
-
+          $blob_exists = az storage blob exists --container-name test-vm --name test-vm/terraform.tfstate --account-name samlinkstorage1234
 
    # Terraform Plan:-
     - task: TerraformTaskV2@2
