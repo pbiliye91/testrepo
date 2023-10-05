@@ -69,7 +69,7 @@ stages:
         scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          $blob_exists = az storage blob exists --container-name test-vm --name test-vm/terraform.tfstate --account-name samlinkstorage1234
+          $blob_exists = az storage blob lease break  --container-name test-vm --name test-vm/terraform.tfstate --account-name samlinkstorage1234
 
    # Terraform Plan:-
     - task: TerraformTaskV2@2
