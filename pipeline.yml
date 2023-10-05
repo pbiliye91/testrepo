@@ -69,12 +69,12 @@ stages:
         scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          blob_exists=$(az storage blob exists --container-name test-vm --name terraform.tfstate --account-name samlinkstorage1234 --query exists)
-          if [ "$blob_exists" == "true" ]; then
+          $blob_exists = $(az storage blob exists --container-name test-vm --name terraform.tfstate --account-name samlinkstorage1234 --query exists | ConvertFrom-Json).exists
+          if ($blob_exists -eq $true) {
             az storage blob lease break --container-name test-vm --blob-name terraform.tfstate --account-name samlinkstorage1234
-          else
-            echo "The terraform.tfstate blob does not exist. Skipping lease break."
-          fi
+          } else {
+            Write-Host "The terraform.tfstate blob does not exist. Skipping lease break."
+          }
 
    # Terraform Plan:-
     - task: TerraformTaskV2@2
