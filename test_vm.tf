@@ -38,10 +38,6 @@ resource "azurerm_subnet" "my_subnet" {
 
 }
 
-variable "vm_login_password" {
-  type = string
-}
-
 resource "azurerm_network_security_group" "my_nsg" {
   name                = "my-nsg"
   location            = azurerm_resource_group.my_resource_group.location
