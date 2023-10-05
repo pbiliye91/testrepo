@@ -22,6 +22,9 @@ variables:
   Environment: test
  # Artifact: AM
 
+variables:
+- group: vm_login_password
+
  
 trigger:
 - main
