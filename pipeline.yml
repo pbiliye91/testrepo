@@ -20,6 +20,7 @@ variables:
   #WorkingDir: $(System.DefaultWorkingDirectory)/variables
   #Target: $(build.artifactstagingdirectory)/AMTF
   Environment: test
+  group: vm_login_password
  # Artifact: AM
  
 trigger:
