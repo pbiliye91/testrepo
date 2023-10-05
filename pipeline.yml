@@ -12,6 +12,7 @@ parameters:
       - windows-latest
       - ubuntu-latest
 variables:
+- group: vm_login_password
   ResourceGroup: mcmd-dev-rg
   StorageAccount: samlinkstorage1234
   Container: test-vm
@@ -21,7 +22,7 @@ variables:
   #Target: $(build.artifactstagingdirectory)/AMTF
   Environment: test
  # Artifact: AM
-  - group: vm_login_password 
+
  
 trigger:
 - main
