@@ -6,6 +6,12 @@ terraform {
       version = ">= 3.61"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "mcmd-dev-rg"
+    storage_account_name = "samlinkstorage1234"
+    container_name       = "test-vm"
+    key                  = "test-vm/terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
