@@ -1,3 +1,3 @@
-variable "vm_login_password" {
+variable "TerraformVmLoginPassword" {
   type        = string
 }
