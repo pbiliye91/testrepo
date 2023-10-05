@@ -21,7 +21,7 @@ variables:
   #Target: $(build.artifactstagingdirectory)/AMTF
   Environment: test
  # Artifact: AM
-  VmLoginPassword: $[ group.vm_login_password.vm_login_password ]
+  TerraformVmLoginPassword: $[ group.vm_login_password.vm_login_password ]
  
 trigger:
 - main
