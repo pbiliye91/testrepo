@@ -60,6 +60,17 @@ stages:
         command: 'validate'
       # workingDirectory: '$(workingDir)'
         environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
+
+   # Break Storage Blob Lease using Azure CLI on Windows
+    - task: AzureCLI@2
+      displayName: 'Break Storage Blob Lease'
+      inputs:
+      #azureSubscription: '$(AzureSubscription)'
+        scriptType: 'ps'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az storage blob lease break --container-name test-vm --blob-name terraform.tfstate --account-name samlinkstorage1234
+
    # Terraform Plan:-
     - task: TerraformTaskV2@2
       displayName: TERRAFORM PLAN
