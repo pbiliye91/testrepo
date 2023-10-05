@@ -73,7 +73,7 @@ stages:
           Write-Host "Blob exists: $blob_exists"
       
           if ($blob_exists -eq "true") {
-            az storage blob lease break --container-name test-vm --blob-name test-vm/terraform.tfstate --account-name samlinkstorage1234 --if-exists
+            az storage blob lease break --container-name test-vm --blob-name test-vm/terraform.tfstate --account-name samlinkstorage1234
           } else {
             Write-Host "The terraform.tfstate blob does not exist. Skipping lease break."
           }
