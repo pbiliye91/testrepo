@@ -68,6 +68,7 @@ stages:
         command: 'plan'
       # workingDirectory: '$(workingDir)'
       # commandOptions: "--var-file=terraform.tfvars --out=tfplan"
+      commandOptions: "-var vm_login_password=$(vm_login_password)"
         environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
         
 - stage: deploy
