@@ -93,7 +93,7 @@ resource "azurerm_windows_virtual_machine" "my_vm" {
   size                  = "Standard_DS2_v2"
 
   admin_username = "user1234"
-  admin_password = "user@12345678"
+  admin_password = var.vm_login_password
 
   os_disk {
     name                 = "my-os-disk"
