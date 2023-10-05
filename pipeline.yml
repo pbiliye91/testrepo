@@ -65,7 +65,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Break Storage Blob Lease'
       inputs:
-      #azureSubscription: '$(AzureSubscription)'
+        azureSubscription: 'Visual Studio Premium with MSDN'
         scriptType: 'ps'
         scriptLocation: 'inlineScript'
         inlineScript: |
