@@ -1,9 +1,9 @@
 parameters:
   - name: ServiceConnection
     displayName: Service Connection Name Follows Below:-
-    default: conn-sb-dev-we-1
+    default: tes-vm-sc
     values:
-      - conn-sb-dev-we-1
+      - ctes-vm-sc
   - name: image
     displayName: PoolImage
     default: windows-latest
