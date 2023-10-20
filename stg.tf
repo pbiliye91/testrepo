@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "gen_storage_account" {
-  name                          = "pubstg2023"
+  name                          = "pubstg2013"
   resource_group_name           = "vishal-resource-group"
   location                      = "westeurope"
   account_tier                  = "Standard"
