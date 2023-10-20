@@ -44,7 +44,7 @@ stages:
         $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
         $IP
         Add-AzStorageAccountNetworkRule -ResourceGroupName "vishal-resource-group" -AccountName "pubstg2013" -IPAddressOrRange "$IP"
-    preferredAzurePowerShellVersion: ' 3.1.0'
+       preferredAzurePowerShellVersion: ' 3.1.0'
     # Install Terraform Installer in the Build Agent:-
     - task: TerraformInstaller@1
       displayName: Install terrform version - LATEST
