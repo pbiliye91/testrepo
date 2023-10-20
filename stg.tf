@@ -10,7 +10,7 @@ resource "azurerm_storage_account" "gen_storage_account" {
 
   network_rules {
     default_action = "Allow"
-    ip_rules       = ["40.74.28.0/23"]
+    ip_rules       = ["103.156.19.74"]
   }
 
   blob_properties {
