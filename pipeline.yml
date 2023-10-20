@@ -62,14 +62,14 @@ stages:
         environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
 
    # Break Storage Blob Lease using Azure CLI on Windows
-    - task: AzureCLI@2
-      displayName: 'Break Storage Blob Lease'
-      inputs:
-        azureSubscription: 'tes-vm-sc'
-        scriptType: 'ps'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          $blob_exists = az storage blob lease break  --container-name test-vm --blob-name test-vm/terraform.tfstate --account-name samlinkstorage1234
+    #- task: AzureCLI@2
+      #displayName: 'Break Storage Blob Lease'
+      #inputs:
+        #azureSubscription: 'tes-vm-sc'
+        #scriptType: 'ps'
+        #scriptLocation: 'inlineScript'
+        #inlineScript: |
+          #$blob_exists = az storage blob lease break  --container-name test-vm --blob-name test-vm/terraform.tfstate --account-name samlinkstorage1234
 
    # Terraform Plan:-
     - task: TerraformTaskV2@2
