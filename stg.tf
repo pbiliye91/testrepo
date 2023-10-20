@@ -6,6 +6,7 @@ resource "azurerm_storage_account" "gen_storage_account" {
   account_replication_type      = "LRS"
   enable_https_traffic_only     = true
   public_network_access_enabled = true
+  depends_on  = [azurerm_resource_group.my_resource_group]
 
   blob_properties {
     #Specifies the number of days that the container should be retained.
