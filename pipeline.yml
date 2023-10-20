@@ -40,7 +40,7 @@ stages:
       inputs:
        azureSubscription: tes-vm-sc
        ScriptType: InlineScript
-       Inline:
+       inlineScript: |
        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
        $IP
        Add-AzStorageAccountNetworkRule -ResourceGroupName "vishal-resource-group" -AccountName "pubstg2013" -IPAddressOrRange "$IP"
