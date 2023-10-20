@@ -74,7 +74,7 @@ resource "azurerm_storage_share_directory" "file_share_directories_new" {
   depends_on           = [azurerm_storage_share.fileshare]
 }
 
-resource "azurerm_storage_share_directory" "file_share_directories_new" {
+resource "azurerm_storage_share_directory" "file_share_directories_new1" {
   share_name           = "bulkfilesdev"
   storage_account_name = azurerm_storage_account.gen_storage_account.name
   name                 = "errorsnew1"
