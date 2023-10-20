@@ -8,6 +8,11 @@ resource "azurerm_storage_account" "gen_storage_account" {
   public_network_access_enabled = false
   depends_on  = [azurerm_resource_group.my_resource_group]
 
+  network_rules {
+    default_action = "Allow"
+    ip_rules       = ["40.74.28.0/23"]
+  }
+
   blob_properties {
     #Specifies the number of days that the container should be retained.
     container_delete_retention_policy {
