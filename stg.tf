@@ -5,7 +5,7 @@ resource "azurerm_storage_account" "gen_storage_account" {
   account_tier                  = "Standard"
   account_replication_type      = "LRS"
   enable_https_traffic_only     = true
-  public_network_access_enabled = true
+  public_network_access_enabled = false
   depends_on  = [azurerm_resource_group.my_resource_group]
 
   blob_properties {
@@ -36,5 +36,12 @@ resource "azurerm_storage_share_directory" "file_share_directories" {
   share_name           = "bulkfilesdev"
   storage_account_name = azurerm_storage_account.gen_storage_account.name
   name                 = "errors"
+  depends_on           = [azurerm_storage_share.fileshare]
+}
+
+resource "azurerm_storage_share_directory" "file_share_directories_new" {
+  share_name           = "bulkfilesdev"
+  storage_account_name = azurerm_storage_account.gen_storage_account.name
+  name                 = "errorsnew"
   depends_on           = [azurerm_storage_share.fileshare]
 }
