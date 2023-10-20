@@ -9,7 +9,7 @@ resource "azurerm_storage_account" "gen_storage_account" {
   depends_on  = [azurerm_resource_group.my_resource_group]
 
   network_rules {
-    default_action = "Allow"
+    default_action = "Deny"
     ip_rules       = ["20.37.158.0/23",
 "20.37.194.0/24",
 "20.39.13.0/26",
