@@ -91,6 +91,7 @@ resource "azurerm_windows_virtual_machine" "my_vm" {
   resource_group_name   = azurerm_resource_group.my_resource_group.name
   network_interface_ids = [azurerm_network_interface.my_nic.id]
   size                  = "Standard_DS2_v2"
+  timezone = "FLE Standard Time"
 
   admin_username = "user1234"
   admin_password = var.vm_login_password
