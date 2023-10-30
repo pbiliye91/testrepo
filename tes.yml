@@ -47,38 +47,50 @@ pool:
 
 
 stages:
-- ${{ if or(eq(parameters.action, 'stop'),  eq(variables['Build.CronSchedule.DisplayName'], 'Everyday stopping')) }}:
+- stage: checkout
+  displayName: 'Checkout'
+  jobs:
+  - job: Checkout
+    displayName: 'Checkout'
+    pool:
+      vmImage: $(BuildAgent)
+    steps:
+    - checkout: self
+
+- ${{ if or(eq(parameters.action, 'stop'), eq(variables['Build.CronSchedule.DisplayName'], 'Everyday stopping')) }}:
   - stage: stop
     displayName: Stop
     jobs:
     - job: Stop_vms
-      displayName:  Stopping vms
+      displayName: Stopping vms
+      pool:
+        vmImage: $(BuildAgent)
       steps:
-
       - powershell: |
           az login --service-principal -u f5735f06-8a24-4ba4-9565-831b7dc064dc -p uk18Q~DoHdKK0Z2o_cTnLX5yk4tw~oC9SIIb1dyJ --tenant aa71b1b3-ce80-489f-b318-f42d6dd05d19
           az account set --subscription f8a41613-4251-4981-af4d-85100623c8a4
           $results = az vm list --query "[].id" --output json | ConvertFrom-Json
           Write-Host "VM IDs: $($results -join ', ')"  # Add this line for debugging
           foreach ($vm_id in $results) {
-           az vm deallocate --no-wait --ids $vm_id
+            az vm deallocate --no-wait --ids $vm_id
           }
-        displayName: 'Stop VMs' 
+        displayName: 'Stop VMs'
 
 - ${{ if or(eq(parameters.action, 'start'), eq(variables['Build.CronSchedule.DisplayName'], 'Weekday starting')) }}:
-  - stage:
+  - stage: start
     displayName: Start
     jobs:
     - job: Start_vms
-      displayName:  Starting vms
+      displayName: Starting vms
+      pool:
+        vmImage: $(BuildAgent)
       steps:
-
       - powershell: |
           az login --service-principal -u f5735f06-8a24-4ba4-9565-831b7dc064dc -p uk18Q~DoHdKK0Z2o_cTnLX5yk4tw~oC9SIIb1dyJ --tenant aa71b1b3-ce80-489f-b318-f42d6dd05d19
           az account set --subscription f8a41613-4251-4981-af4d-85100623c8a4
           $results = az vm list --query "[].id" --output json | ConvertFrom-Json
           Write-Host "VM IDs: $($results -join ', ')"  # Add this line for debugging
           foreach ($vm_id in $results) {
-           az vm start --no-wait --ids $vm_id
+            az vm start --no-wait --ids $vm_id
           }
-        displayName: 'Start VMs'      
+        displayName: 'Start VMs'
