@@ -58,10 +58,7 @@ stages:
       - bash: |
           az login --service-principal -u f5735f06-8a24-4ba4-9565-831b7dc064dc -p uk18Q~DoHdKK0Z2o_cTnLX5yk4tw~oC9SIIb1dyJ --tenant aa71b1b3-ce80-489f-b318-f42d6dd05d19
           az account set --subscription f8a41613-4251-4981-af4d-85100623c8a4
-        displayName: Sign in with SP
-
-      - bash: |
-          results=$(az vm list --query "[].id" -o tsv)
+          results=$(az vm list -o json | jq -r '.[].id')
           echo "VM IDs: $results"  # Add this line for debugging
           for vm_id in $results; do
            az vm deallocate --no-wait --ids $vm_id
@@ -79,10 +76,7 @@ stages:
       - bash: |
           az login --service-principal -u f5735f06-8a24-4ba4-9565-831b7dc064dc -p uk18Q~DoHdKK0Z2o_cTnLX5yk4tw~oC9SIIb1dyJ --tenant aa71b1b3-ce80-489f-b318-f42d6dd05d19
           az account set --subscription f8a41613-4251-4981-af4d-85100623c8a4
-        displayName: Sign in with SP
-
-      - bash: |
-          results=$(az vm list --query "[].id" -o tsv)
+          results=$(az vm list -o json | jq -r '.[].id')
           echo "VM IDs: $results"  # Add this line for debugging
           for vm_id in $results; do
            az vm start --no-wait --ids $vm_id
