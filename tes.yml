@@ -1,0 +1,76 @@
+schedules:
+- cron: '30 21 * * 1-5'  # 3 AM IST, Mon-Fri
+  displayName: Weekday Starting Schedule
+  branches:
+    include:
+      - 'dev'
+
+- cron: '30 10 * * *'  # 4 PM IST, Daily
+  displayName: Daily Stopping Schedule
+  branches:
+    include:
+      - 'dev'
+
+parameters:
+  - name: ServiceConnection
+    displayName: Service Connection Name Follows Below:-
+    default: tes-vm-sc
+    values:
+      - tes-vm-sc
+  - name: image
+    displayName: PoolImage
+    default: windows-latest
+    type: string
+    values:
+      - windows-latest
+      - ubuntu-latest
+  - name: action
+    displayName: Start/Stop vms
+    type: string
+    values:
+    - start
+    - stop
+    - scheduled # Dummy value for scheduler
+    default: scheduled
+
+variables:
+- name: BuildAgent
+  value: ${{ parameters.image }}
+- name: Environment
+  value: dev
+ 
+trigger:
+- dev
+
+pool:
+  vmImage: $(BuildAgent)
+
+
+stages:
+- ${{ if or(eq(parameters.action, 'stop'),  eq(variables['Build.CronSchedule.DisplayName'], 'Everyday stopping')) }}:
+  - stage: stop
+    displayName: Stop
+    jobs:
+    - job: Stop_vms
+      displayName:  Stopping vms
+      steps:
+
+      - bash: |
+          results=$(az vm list --query "[].id" -o tsv)
+          printf "%s\n" $results
+          az vm deallocate --no-wait --ids $results
+        displayName: Stopping vms
+
+- ${{ if or(eq(parameters.action, 'start'), eq(variables['Build.CronSchedule.DisplayName'], 'Weekday starting')) }}:
+  - stage:
+    displayName: Start
+    jobs:
+    - job: Start_vms
+      displayName:  Starting vms
+      steps:
+
+      - bash: |
+          results=$(az vm list --query "[].id" -o tsv)
+          printf "%s\n" $results
+          az vm start --no-wait --ids $results
+        displayName: Start vms        
