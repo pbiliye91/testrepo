@@ -40,7 +40,7 @@ variables:
   value: test
  
 trigger:
-- dev
+- test
 
 pool:
   vmImage: $(BuildAgent)
