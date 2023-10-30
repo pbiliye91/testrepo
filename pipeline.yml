@@ -31,20 +31,10 @@ pool:
 
 stages:
 - stage: PLAN
-  jobs:   
+  jobs:
   - job: PLAN
     displayName: PLAN     
-    steps:
-    - task: AzurePowerShell@5
-      displayName: 'Azure PowerShell script: Set Rule'
-      inputs:
-       azureSubscription: tes-vm-sc
-       ScriptType: InlineScript
-       Inline: |
-        $IP= Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-        $IP
-        Add-AzStorageAccountNetworkRule -ResourceGroupName "vishal-resource-group" -AccountName "pubstg2013" -IPAddressOrRange "$IP"
-       preferredAzurePowerShellVersion: ' 3.1.0'
+    steps:  
     # Install Terraform Installer in the Build Agent:-
     - task: TerraformInstaller@1
       displayName: Install terrform version - LATEST
