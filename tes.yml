@@ -1,11 +1,11 @@
 schedules:
-- cron: '40 12 * * 1-5'  # 3 AM IST, Mon-Fri
+- cron: '05 14 * * 1-5'  # 3 AM IST, Mon-Fri
   displayName: Weekday Starting Schedule
   branches:
     include:
       - 'main'
  
-- cron: '30 12 * * *'  # 4 PM IST, Daily
+- cron: '58 13 * * *'  # 4 PM IST, Daily
   displayName: Daily Stopping Schedule
   branches:
     include:
