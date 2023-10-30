@@ -64,7 +64,7 @@ stages:
           results=$(az vm list --query "[].id" -o tsv)
           echo "VM IDs: $results"  # Add this line for debugging
           for vm_id in $results; do
-          az vm deallocate --no-wait --ids $vm_id
+           az vm deallocate --no-wait --ids $vm_id
           done 
         displayName: Stopping vms
 
@@ -85,6 +85,6 @@ stages:
           results=$(az vm list --query "[].id" -o tsv)
           echo "VM IDs: $results"  # Add this line for debugging
           for vm_id in $results; do
-          az vm start --no-wait --ids $vm_id
+           az vm start --no-wait --ids $vm_id
           done 
         displayName: Start vms        
