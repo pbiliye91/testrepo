@@ -19,7 +19,7 @@ parameters:
       - tes-vm-sc
   - name: image
     displayName: PoolImage
-    default: windows-latest
+    default: ubuntu-latest
     type: string
     values:
       - windows-latest
