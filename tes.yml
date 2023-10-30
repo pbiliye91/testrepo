@@ -62,8 +62,9 @@ stages:
 
       - bash: |
           results=$(az vm list --query "[].id" -o tsv)
-          printf "%s\n" $results
-          az vm deallocate --no-wait --ids $results
+          echo "VM IDs: $results"  # Add this line for debugging
+          for vm_id in $results; do
+          az vm deallocate --no-wait --ids $vm_id
         displayName: Stopping vms
 
 - ${{ if or(eq(parameters.action, 'start'), eq(variables['Build.CronSchedule.DisplayName'], 'Weekday starting')) }}:
@@ -81,6 +82,7 @@ stages:
 
       - bash: |
           results=$(az vm list --query "[].id" -o tsv)
-          printf "%s\n" $results
-          az vm start --no-wait --ids $results
+          echo "VM IDs: $results"  # Add this line for debugging
+          for vm_id in $results; do
+          az vm deallocate --no-wait --ids $vm_id
         displayName: Start vms        
