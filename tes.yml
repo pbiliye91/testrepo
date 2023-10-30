@@ -19,7 +19,7 @@ parameters:
       - tes-vm-sc
   - name: image
     displayName: PoolImage
-    default: ubuntu-latest
+    default: windows-latest
     type: string
     values:
       - windows-latest
@@ -56,6 +56,11 @@ stages:
       steps:
 
       - bash: |
+          az login --service-principal -u f5735f06-8a24-4ba4-9565-831b7dc064dc -p uk18Q~DoHdKK0Z2o_cTnLX5yk4tw~oC9SIIb1dyJ --tenant aa71b1b3-ce80-489f-b318-f42d6dd05d19
+          az account set --subscription f8a41613-4251-4981-af4d-85100623c8a4
+        displayName: Sign in with SP
+
+      - bash: |
           results=$(az vm list --query "[].id" -o tsv)
           printf "%s\n" $results
           az vm deallocate --no-wait --ids $results
@@ -68,6 +73,11 @@ stages:
     - job: Start_vms
       displayName:  Starting vms
       steps:
+
+      - bash: |
+          az login --service-principal -u f5735f06-8a24-4ba4-9565-831b7dc064dc -p uk18Q~DoHdKK0Z2o_cTnLX5yk4tw~oC9SIIb1dyJ --tenant aa71b1b3-ce80-489f-b318-f42d6dd05d19
+          az account set --subscription f8a41613-4251-4981-af4d-85100623c8a4
+        displayName: Sign in with SP
 
       - bash: |
           results=$(az vm list --query "[].id" -o tsv)
