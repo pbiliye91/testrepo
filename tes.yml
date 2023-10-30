@@ -30,8 +30,8 @@ parameters:
     values:
     - start
     - stop
-    - scheduled # Dummy value for scheduler
-    default: scheduled
+    #- scheduled # Dummy value for scheduler
+    #default: scheduled
  
 variables:
 - name: BuildAgent
