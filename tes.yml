@@ -3,13 +3,13 @@ schedules:
   displayName: Weekday Starting Schedule
   branches:
     include:
-      - 'dev'
+      - 'main'
 
 - cron: '30 10 * * *'  # 4 PM IST, Daily
   displayName: Daily Stopping Schedule
   branches:
     include:
-      - 'dev'
+      - 'main'
 
 parameters:
   - name: ServiceConnection
