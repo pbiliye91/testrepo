@@ -1,11 +1,11 @@
 schedules:
-- cron: '08 09 * * 1-5'
+- cron: '11 09 * * 1-5'
   displayName: Weekday Starting Schedule
   branches:
     include:
       - 'main'
  
-- cron: '49 08 * * *'
+- cron: '16 09 * * *'
   displayName: Daily Stopping Schedule
   branches:
     include:
