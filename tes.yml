@@ -47,7 +47,7 @@ pool:
  
  
 stages:
-- ${{ if eq(variables['Build.CronSchedule.DisplayName'], 'Everyday stopping') }}:
+- ${{ if or(eq(parameters.action, 'stop'),  eq(variables['Build.CronSchedule.DisplayName'], 'Everyday stopping')) }}:
   - stage: stop
     displayName: Stop
     jobs:
@@ -65,7 +65,7 @@ stages:
           }
         displayName: 'Stop VMs' 
  
-- ${{ if eq(variables['Build.CronSchedule.DisplayName'], 'Weekday starting') }}:
+- ${{ if or(eq(parameters.action, 'start'), eq(variables['Build.CronSchedule.DisplayName'], 'Weekday starting')) }}:
   - stage:
     displayName: Start
     jobs:
