@@ -30,7 +30,7 @@ parameters:
     values:
     - start
     - stop
-    #- scheduled # Dummy value for scheduler
+    - scheduled # Dummy value for scheduler
     default: start
  
 variables:
@@ -47,7 +47,7 @@ pool:
  
  
 stages:
-- ${{ if or(eq(parameters.action, 'stop'),  eq(variables['Build.CronSchedule.DisplayName'], 'Everyday stopping')) }}:
+- ${{ if eq(variables['Build.CronSchedule.DisplayName'], 'Everyday stopping') }}:
   - stage: stop
     displayName: Stop
     jobs:
@@ -65,7 +65,7 @@ stages:
           }
         displayName: 'Stop VMs' 
  
-- ${{ if or(eq(parameters.action, 'start'), eq(variables['Build.CronSchedule.DisplayName'], 'Weekday starting')) }}:
+- ${{ if eq(variables['Build.CronSchedule.DisplayName'], 'Weekday starting') }}:
   - stage:
     displayName: Start
     jobs:
