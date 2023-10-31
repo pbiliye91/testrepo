@@ -34,6 +34,7 @@ parameters:
     default: scheduled
  
 variables:
+- group: startstop
 - name: BuildAgent
   value: ${{ parameters.image }}
 - name: Environment
