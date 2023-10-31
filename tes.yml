@@ -41,7 +41,7 @@ variables:
   value: test
  
 trigger:
-- main
+- none
  
 pool:
   vmImage: $(BuildAgent)
