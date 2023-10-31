@@ -4,12 +4,14 @@ schedules:
   branches:
     include:
       - 'main'
+  always: true
  
 - cron: '29 09 * * *'
   displayName: Daily Stopping Schedule
   branches:
     include:
       - 'main'
+  always: true
  
 parameters:
   - name: ServiceConnection
