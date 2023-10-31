@@ -66,7 +66,7 @@ stages:
         displayName: 'Stop VMs' 
  
 - ${{ if or(eq(parameters.action, 'start'), eq(variables['Build.CronSchedule.DisplayName'], 'Weekday Starting Schedule')) }}:
-  - stage:
+  - stage: start
     displayName: Start
     jobs:
     - job: Start_vms
