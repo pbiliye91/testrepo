@@ -1,5 +1,5 @@
 schedules:
-- cron: '22 06 * * 1-5'  # 3 AM IST, Mon-Fri
+- cron: '45 06 * * 1-5'  # 3 AM IST, Mon-Fri
   displayName: Weekday Starting Schedule
   branches:
     include:
