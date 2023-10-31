@@ -1,11 +1,11 @@
 schedules:
-- cron: '34 07 * * 1-5'  # 3 AM IST, Mon-Fri
+- cron: '45 07 * * 1-5'  # 3 AM IST, Mon-Fri
   displayName: Weekday Starting Schedule
   branches:
     include:
       - 'main'
  
-- cron: '28 07 * * *'  # 4 PM IST, Daily
+- cron: '59 07 * * *'  # 4 PM IST, Daily
   displayName: Daily Stopping Schedule
   branches:
     include:
@@ -75,8 +75,8 @@ stages:
       steps:
  
       - powershell: |
-          az login --service-principal -u f5735f06-8a24-4ba4-9565-831b7dc064dc -p uk18Q~DoHdKK0Z2o_cTnLX5yk4tw~oC9SIIb1dyJ --tenant aa71b1b3-ce80-489f-b318-f42d6dd05d19
-          az account set --subscription f8a41613-4251-4981-af4d-85100623c8a4
+          az login --service-principal -u $(clientid) -p $(secretvalue) --tenant $(tenantid)
+          az account set --subscription $(subscription)
           $results = az vm list --query "[].id" --output json | ConvertFrom-Json
           Write-Host "VM IDs: $($results -join ', ')"  # Add this line for debugging
           foreach ($vm_id in $results) {
