@@ -37,10 +37,6 @@ parameters:
  
 variables:
 - group: startstop
-- name: BuildAgent
-  value: ${{ parameters.image }}
-- name: Environment
-  value: test
 -name: clientidvar
   value: $[variables.clientid]
 -name: secretvaluevar
@@ -48,7 +44,11 @@ variables:
 -name: tenantidvar
   value: $[variables.tenantid]
 -name: subscriptionvar
-  value: $[variables.subscription]  
+  value: $[variables.subscription]
+- name: BuildAgent
+  value: ${{ parameters.image }}
+- name: Environment
+  value: test
  
 trigger:
 - none
