@@ -67,8 +67,8 @@ stages:
       steps:
 
       - powershell: |
-          az login --service-principal -u $(clientid) -p $(secretvalue) --tenant $(tenantid)
-          az account set --subscription $(subscription)
+          az login --service-principal -u $(clientidvar) -p $(secretvaluevar) --tenant $(tenantidvar)
+          az account set --subscription $(subscriptionvar)
           $results = az vm list --query "[].id" --output json | ConvertFrom-Json
           Write-Host "VM IDs: $($results -join ', ')"  # Add this line for debugging
           foreach ($vm_id in $results) {
@@ -85,8 +85,8 @@ stages:
       steps:
  
       - powershell: |
-          az login --service-principal -u $(clientid) -p $(secretvalue) --tenant $(tenantid)
-          az account set --subscription $(subscription)
+          az login --service-principal -u $(clientidvar) -p $(secretvaluevar) --tenant $(tenantidvar)
+          az account set --subscription $(subscriptionvar)
           $results = az vm list --query "[].id" --output json | ConvertFrom-Json
           Write-Host "VM IDs: $($results -join ', ')"  # Add this line for debugging
           foreach ($vm_id in $results) {
