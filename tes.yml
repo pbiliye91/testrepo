@@ -41,13 +41,13 @@ variables:
   value: ${{ parameters.image }}
 - name: Environment
   value: test
--name: clientid
+-name: clientidvar
   value: $[variables.clientid]
--name: secretvalue
+-name: secretvaluevar
   value: $[variables.secretvalue]
--name: tenantid
+-name: tenantidvar
   value: $[variables.tenantid]
--name: subscription
+-name: subscriptionvar
   value: $[variables.subscription]  
  
 trigger:
