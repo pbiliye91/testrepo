@@ -37,13 +37,13 @@ parameters:
  
 variables:
 - group: startstop
--name: clientidvar
+- name: clientidvar
   value: $[variables.clientid]
--name: secretvaluevar
+- name: secretvaluevar
   value: $[variables.secretvalue]
--name: tenantidvar
+- name: tenantidvar
   value: $[variables.tenantid]
--name: subscriptionvar
+- name: subscriptionvar
   value: $[variables.subscription]
 - name: BuildAgent
   value: ${{ parameters.image }}
