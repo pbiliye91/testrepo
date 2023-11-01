@@ -1,5 +1,5 @@
 schedules:
-- cron: '51 09 * * 1-5'
+- cron: '31 10 * * 1-5'
   displayName: Weekday Starting Schedule
   branches:
     include:
