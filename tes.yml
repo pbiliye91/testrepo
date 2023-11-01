@@ -41,6 +41,14 @@ variables:
   value: ${{ parameters.image }}
 - name: Environment
   value: test
+-name: clientid
+  value: $[variables.clientid]
+-name: secretvalue
+  value: $[variables.secretvalue]
+-name: tenantid
+  value: $[variables.tenantid]
+-name: subscription
+  value: $[variables.subscription]  
  
 trigger:
 - none
@@ -57,7 +65,7 @@ stages:
     - job: Stop_vms
       displayName:  Stopping vms
       steps:
- 
+
       - powershell: |
           az login --service-principal -u $(clientid) -p $(secretvalue) --tenant $(tenantid)
           az account set --subscription $(subscription)
