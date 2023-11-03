@@ -127,6 +127,26 @@ resource "azurerm_virtual_machine_extension" "my_extension" {
 SETTINGS
 }
 
+resource "azurerm_virtual_machine_extension" "my_dsc_extension" {
+  name                       = "my-dsc-extension"
+  virtual_machine_id         = azurerm_windows_virtual_machine.my_vm.id
+  publisher                  = "Microsoft.Powershell"
+  type                       = "DSC"
+  type_handler_version       = "2.76"
+  auto_upgrade_minor_version = true
+
+  settings = <<SETTINGS
+    {
+      "configuration": {
+        "script": "${file("dsc.ps1")}",
+        "function": "InstallMSMQTriggers"
+      },
+      "configurationArguments": {}
+    }
+SETTINGS
+}
+
+
 
 
 /*
