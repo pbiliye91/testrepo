@@ -1,16 +1,23 @@
+parameters:
+  - name: ServiceConnection
+    displayName: Service Connection Name Follows Below:-
+    default: tes-vm-sc
+    values:
+      - tes-vm-sc
+  - name: image
+    displayName: PoolImage
+    default: windows-latest
+    type: string
+    values:
+      - windows-latest
+      - ubuntu-latest
+
 trigger:
-- none
-
-prerequisites:
-- vmImage: 'windows-latest'
-
-pool:
-  vmImage: 'windows-latest'
+- none      
 
 - task: AzureCLIScript@1
   inputs:
-    azureSubscription: '<Your Azure Service Connection>'
+    azureSubscription: 'tes-vm-sc'
     scriptType: 'inlineScript'
     inlineScript: |
-      # Run PowerShell script from the repository
       .\install-windows-features.ps1
