@@ -127,22 +127,6 @@ resource "azurerm_virtual_machine_extension" "my_extension" {
 SETTINGS
 }
 
-resource "azurerm_virtual_machine_extension" "my_extension0909" {
-  name                       = "my-extension0909"
-  virtual_machine_id         = azurerm_windows_virtual_machine.my_vm.id
-  publisher                  = "Microsoft.Compute"
-  type                       = "CustomScriptExtension"
-  type_handler_version       = "1.10"
-  auto_upgrade_minor_version = true
-
-  settings = <<SETTINGS
-    {
-      "commandToExecute": "powershell.exe Install-WindowsFeature -Name MSMQ-Triggers"
-    }
-SETTINGS
-}
-
-
 
 
 /*
