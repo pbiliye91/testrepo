@@ -137,13 +137,12 @@ resource "azurerm_virtual_machine_extension" "my_dsc_extension" {
 
   settings = jsonencode({
     configuration = {
-      script = file("dsc.ps1")
+      "url": "https://samlinkstorage1234.blob.core.windows.net/test-vm/dsc.ps1"
       function = "InstallMSMQTriggers"
     }
     configurationArguments = {}
   })
 }
-
 
 
 
