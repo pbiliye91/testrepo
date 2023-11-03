@@ -111,7 +111,7 @@ resource "azurerm_windows_virtual_machine" "my_vm" {
 }
 
 
-/*
+
 resource "azurerm_virtual_machine_extension" "my_extension" {
   name                       = "my-extension"
   virtual_machine_id         = azurerm_windows_virtual_machine.my_vm.id
@@ -126,7 +126,7 @@ resource "azurerm_virtual_machine_extension" "my_extension" {
     }
 SETTINGS
 }
-*/
+
 
 
 /*
