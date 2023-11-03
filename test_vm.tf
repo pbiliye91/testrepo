@@ -122,7 +122,7 @@ resource "azurerm_virtual_machine_extension" "my_extension" {
 
   settings = <<SETTINGS
     {
-      "commandToExecute": "powershell.exe Install-WindowsFeature -Name NET-Framework-Features -IncludeManagementTools -Verbose; powershell.exe Install-WindowsFeature -Name MSMQ-Services -IncludeManagementTools -Verbose; powershell.exe Install-WindowsFeature -Name Web-Server -IncludeManagementTools -Verbose; powershell.exe Install-WindowsFeature -Name MSMQ-Triggers; powershell.exe Restart-Computer -Force"
+      "commandToExecute": "powershell.exe Install-WindowsFeature -Name NET-Framework-Features -IncludeManagementTools -Verbose; powershell.exe Install-WindowsFeature -Name MSMQ-Services -IncludeManagementTools -Verbose; powershell.exe Install-WindowsFeature -Name Web-Server -IncludeManagementTools -Verbose"
     }
 SETTINGS
 }
