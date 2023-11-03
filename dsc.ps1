@@ -1,0 +1,14 @@
+Install-WindowsFeature -Name Web-Server
+Install-WindowsFeature -Name Web-ASP-Net45
+Install-WindowsFeature -Name Web-Net-Ext
+Install-WindowsFeature -Name Web-Filtering
+Install-WindowsFeature -Name Web-ISAPI-Filter
+Install-WindowsFeature -Name Web-ISAPI-Ext
+Install-WindowsFeature -Name Web-Windows-Auth
+Install-WindowsFeature -Name Web-Mgmt-Console
+Install-WindowsFeature -Name Web-Metabase
+Install-WindowsFeature -Name Web-Lgcy-Scripting
+Install-WindowsFeature -Name NET-WCF-HTTP-Activation45
+Install-WindowsFeature -name Web-WebSockets
+Install-WindowsFeature -Name MSMQ-Server
+Install-WindowsFeature -Name MSMQ-Triggers
