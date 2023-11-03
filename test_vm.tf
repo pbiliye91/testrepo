@@ -135,16 +135,15 @@ resource "azurerm_virtual_machine_extension" "my_dsc_extension" {
   type_handler_version       = "2.76"
   auto_upgrade_minor_version = true
 
-  settings = <<SETTINGS
-    {
-      "configuration": {
-        "script": "${file("dsc.ps1")}",
-        "function": "InstallMSMQTriggers"
-      },
-      "configurationArguments": {}
+  settings = jsonencode({
+    configuration = {
+      script = file("dsc.ps1")
+      function = "InstallMSMQTriggers"
     }
-SETTINGS
+    configurationArguments = {}
+  })
 }
+
 
 
 
