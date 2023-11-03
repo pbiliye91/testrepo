@@ -1,0 +1,16 @@
+trigger:
+- none
+
+prerequisites:
+- vmImage: 'windows-latest'
+
+pool:
+  vmImage: 'windows-latest'
+
+- task: AzureCLIScript@1
+  inputs:
+    azureSubscription: '<Your Azure Service Connection>'
+    scriptType: 'inlineScript'
+    inlineScript: |
+      # Run PowerShell script from the repository
+      .\install-windows-features.ps1
