@@ -137,9 +137,9 @@ resource "azurerm_virtual_machine_extension" "my_dsc_extension" {
 
   settings = jsonencode({
     configuration = {
-      "url": "https://samlinkstorage1234.blob.core.windows.net/test-vm/dsc.zip"
-      "script": "dsc.ps1"
-      function = "dsc"
+      "url": "https://samlinkstorage1234.blob.core.windows.net/test-vm/dscn.zip"
+      "script": "dscn.ps1"
+      function = "MyDSCConfiguration"
     }
     configurationArguments = {}
   })
