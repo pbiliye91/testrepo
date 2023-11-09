@@ -1,0 +1,67 @@
+parameters:
+  - name: ServiceConnection
+    displayName: Service Connection Name Follows Below:-
+    default: tes-vm-sc
+    values:
+      - tes-vm-sc
+  - name: image
+    displayName: PoolImage
+    default: windows-latest
+    type: string
+    values:
+      - windows-latest
+      - ubuntu-latest
+variables:
+  ResourceGroup: mcmd-dev-rg
+  StorageAccount: samlinkstorage1234
+  Container: test-vm
+  TfstateFile: test-vm/terraform.tfstate
+  BuildAgent: ${{ parameters.image }}
+  #WorkingDir: $(System.DefaultWorkingDirectory)/variables
+  #Target: $(build.artifactstagingdirectory)/AMTF
+  Environment: test
+  group: password
+ # Artifact: AM
+ 
+trigger:
+- main
+
+pool:
+  vmImage: $(BuildAgent)
+
+stages:
+- stage: PLAN
+  jobs:
+  - job: PLAN
+    displayName: PLAN     
+    steps:  
+    # Install Terraform Installer in the Build Agent:-
+    - task: TerraformInstaller@1
+      displayName: Install terrform version - LATEST
+      inputs:
+        terraformVersion: 'latest'
+   # Terraform Init:-
+    - task: TerraformTaskV4@4
+      displayName: TERRAFORM INIT
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        #workingDirectory: '$(workingDir)' # Az DevOps can find the required Terraform code
+        backendServiceArm: '${{ parameters.ServiceConnection }}'
+        backendAzureRmResourceGroupName: '$(ResourceGroup)' 
+        backendAzureRmStorageAccountName: '$(StorageAccount)'
+        backendAzureRmContainerName: '$(Container)'
+        backendAzureRmKey: '$(TfstateFile)'
+- stage: import
+    jobs:
+      - job: IMPORT
+        displayName: TERRAFORM IMPORT
+        steps:
+          - checkout: self
+          - task: TerraformInstaller@1
+            displayName: Install Terraform Version - LATEST
+            inputs:
+              terraformVersion: 'latest'
+          - script: |
+              terraform import azurerm_virtual_machine_extension.my_dsc_extension "/subscriptions/f8a41613-4251-4981-af4d-85100623c8a4/resourceGroups/VISHAL-RESOURCE-GROUP/providers/Microsoft.Compute/virtualMachines/my-vm/extensions/my-dsc-extension"
+            displayName: 'Terraform Import'
