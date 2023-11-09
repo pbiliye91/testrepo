@@ -53,15 +53,15 @@ stages:
         backendAzureRmContainerName: '$(Container)'
         backendAzureRmKey: '$(TfstateFile)'
 - stage: import
-    jobs:
-      - job: IMPORT
-        displayName: TERRAFORM IMPORT
-        steps:
-          - checkout: self
-          - task: TerraformInstaller@1
-            displayName: Install Terraform Version - LATEST
-            inputs:
-              terraformVersion: 'latest'
-          - script: |
-              terraform import azurerm_virtual_machine_extension.my_dsc_extension "/subscriptions/f8a41613-4251-4981-af4d-85100623c8a4/resourceGroups/VISHAL-RESOURCE-GROUP/providers/Microsoft.Compute/virtualMachines/my-vm/extensions/my-dsc-extension"
-            displayName: 'Terraform Import'
+  jobs:
+    - job: IMPORT
+      displayName: TERRAFORM IMPORT
+      steps:
+        - checkout: self
+       - task: TerraformInstaller@1
+      displayName: Install Terraform Version - LATEST
+      inputs:
+        terraformVersion: 'latest'
+      - script: |
+        terraform import azurerm_virtual_machine_extension.my_dsc_extension "/subscriptions/f8a41613-4251-4981-af4d-85100623c8a4/resourceGroups/VISHAL-RESOURCE-GROUP/providers/Microsoft.Compute/virtualMachines/my-vm/extensions/my-dsc-extension"
+        displayName: 'Terraform Import'
