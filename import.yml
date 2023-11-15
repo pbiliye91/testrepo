@@ -52,7 +52,7 @@ stages:
         backendAzureRmStorageAccountName: '$(StorageAccount)'
         backendAzureRmContainerName: '$(Container)'
         backendAzureRmKey: '$(TfstateFile)'
-    - task: TerraformCLI@0
+    - task: TerraformTaskV4@4
       displayName: 'terraform import env'
       inputs:
         command: import
