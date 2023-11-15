@@ -81,6 +81,14 @@ stages:
       # commandOptions: "--var-file=terraform.tfvars --out=tfplan"
         commandOptions: '-var vm_login_password=$(vm_login_password)'
         environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
+
+    - task: JasonBJohnson.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@2
+      displayName: 'terraform import'
+      inputs:
+        provider: 'azurerm'
+        command: import
+        environmentServiceName: 'tes-vm-sc'
+        commandOptions: 'terraform import azurerm_virtual_machine_extension.clo_db_dsc-extension /subscriptions/ab25a1c8-c966-4d16-8f19-d36b27af1ea0/resourceGroups/rg-sb-clo-db-qa-we-1/providers/Microsoft.Compute/virtualMachines/vmclodbqawe1/extensions/dsc-extension'   
       
         
 - stage: deploy
