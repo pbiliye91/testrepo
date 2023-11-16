@@ -44,7 +44,7 @@ stages:
       displayName: Install terrform version - LATEST
       inputs:
         terraformVersion: 'latest'
-    - script: |
+    - powershell: |
         az login --service-principal -u $(clientidvar) -p $(secretvaluevar) --tenant $(tenantidvar)
         az account set --subscription $(subscriptionvar)
         terraform init
