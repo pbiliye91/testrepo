@@ -34,19 +34,40 @@ pool:
   vmImage: $(BuildAgent)
 
 stages:
-- stage: PLAN
+- stage: CLI install
   jobs:
-  - job: PLAN
-    displayName: PLAN     
+  - job: cli install
+    displayName: cli install     
     steps:  
     # Install Terraform Installer in the Build Agent:-
     - task: TerraformInstaller@0
       displayName: Install terrform version - LATEST
       inputs:
         terraformVersion: 'latest'
-    - powershell: |
+    - task: TerraformTaskV4@4
+      displayName: TERRAFORM INIT
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        #workingDirectory: '$(workingDir)' # Az DevOps can find the required Terraform code
+        backendServiceArm: '${{ parameters.ServiceConnection }}'
+        backendAzureRmResourceGroupName: '$(ResourceGroup)' 
+        backendAzureRmStorageAccountName: '$(StorageAccount)'
+        backendAzureRmContainerName: '$(Container)'
+        backendAzureRmKey: '$(TfstateFile)'
+
+    
+- stage: import
+  displayName: import
+  jobs:
+    - job: import
+      displayName:  import
+      steps:
+
+      - powershell: |
         az login --service-principal -u $(clientidvar) -p $(secretvaluevar) --tenant $(tenantidvar)
         az account set --subscription $(subscriptionvar)
         terraform init
         terraform import azurerm_virtual_machine_extension.clo_db_dsc-extension /subscriptions/ab25a1c8-c966-4d16-8f19-d36b27af1ea0/resourceGroups/rg-sb-clo-db-qa-we-1/providers/Microsoft.Compute/virtualMachines/vmclodbqawe1/extensions/dsc-extension
-        displayName: 'Terraform Init and Import'
+
+        displayName: 'import resource'      
