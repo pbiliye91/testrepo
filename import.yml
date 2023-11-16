@@ -39,7 +39,7 @@ stages:
         terraformVersion: 'latest'
 
     # Terraform Init:-
-    - task: HashiCorp.Terraform.TerraformTaskV2@3
+    - task: TerraformTaskV1@0
       displayName: TERRAFORM INIT
       inputs:
         provider: 'azurerm'
