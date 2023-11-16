@@ -11,6 +11,7 @@ parameters:
     values:
       - windows-latest
       - ubuntu-latest
+
 variables:
   ResourceGroup: mcmd-dev-rg
   StorageAccount: samlinkstorage1234
@@ -18,7 +19,7 @@ variables:
   TfstateFile: test-vm/terraform.tfstate
   BuildAgent: ${{ parameters.image }}
   Environment: test
- 
+
 trigger:
 - main
 
@@ -32,20 +33,19 @@ stages:
     displayName: PLAN     
     steps:  
     # Install Terraform Installer in the Build Agent:-
-    - task: TerraformInstaller@1
+    - task: JasonBJohnson.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
       displayName: Install terrform version - LATEST
       inputs:
         terraformVersion: 'latest'
-   # Terraform Init:-
-    - task: TerraformTaskV4@4
+
+    # Terraform Init:-
+    - task: HashiCorp.Terraform.TerraformTaskV2@2
       displayName: TERRAFORM INIT
       inputs:
         provider: 'azurerm'
         command: 'init'
-        #workingDirectory: '$(workingDir)' # Az DevOps can find the required Terraform code
         backendServiceArm: '${{ parameters.ServiceConnection }}'
         backendAzureRmResourceGroupName: '$(ResourceGroup)' 
         backendAzureRmStorageAccountName: '$(StorageAccount)'
         backendAzureRmContainerName: '$(Container)'
         backendAzureRmKey: '$(TfstateFile)'
-    
