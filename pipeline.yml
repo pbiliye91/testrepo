@@ -34,7 +34,7 @@ stages:
   jobs:
   - job: PLAN
     displayName: PLAN     
-    steps:  
+    steps:
     # Install Terraform Installer in the Build Agent:-
     - task: TerraformInstaller@1
       displayName: Install terrform version - LATEST
@@ -60,17 +60,6 @@ stages:
         command: 'validate'
       # workingDirectory: '$(workingDir)'
         environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
-
-   # Break Storage Blob Lease using Azure CLI on Windows
-    #- task: AzureCLI@2
-      #displayName: 'Break Storage Blob Lease'
-      #inputs:
-        #azureSubscription: 'tes-vm-sc'
-        #scriptType: 'ps'
-        #scriptLocation: 'inlineScript'
-        #inlineScript: |
-          #$blob_exists = az storage blob lease break  --container-name test-vm --blob-name test-vm/terraform.tfstate --account-name samlinkstorage1234    
-
    # Terraform Plan:-
     - task: TerraformTaskV2@2
       displayName: TERRAFORM PLAN
@@ -79,7 +68,7 @@ stages:
         command: 'plan'
       # workingDirectory: '$(workingDir)'
       # commandOptions: "--var-file=terraform.tfvars --out=tfplan"
-        commandOptions: '-var vm_login_password=$(vm_login_password)'
+      #  commandOptions: '-var domain_join_password=$(domain_join_password)'
         environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
         
 - stage: deploy
