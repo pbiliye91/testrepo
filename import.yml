@@ -34,10 +34,10 @@ pool:
   vmImage: $(BuildAgent)
 
 stages:
-- stage: CLI install
+- stage: CLIinstall
   jobs:
-  - job: cli install
-    displayName: cli install     
+  - job: cliinstall
+    displayName: cliinstall     
     steps:  
     # Install Terraform Installer in the Build Agent:-
     - task: TerraformInstaller@0
