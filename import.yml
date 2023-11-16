@@ -17,10 +17,7 @@ variables:
   Container: test-vm
   TfstateFile: test-vm/terraform.tfstate
   BuildAgent: ${{ parameters.image }}
-  #WorkingDir: $(System.DefaultWorkingDirectory)/variables
-  #Target: $(build.artifactstagingdirectory)/AMTF
   Environment: test
- # Artifact: AM
  
 trigger:
 - main
