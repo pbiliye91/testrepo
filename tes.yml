@@ -49,6 +49,14 @@ variables:
   value: ${{ parameters.image }}
 - name: Environment
   value: test
+- name: ResourceGroup
+  value: mcmd-dev-rg
+- name: StorageAccount
+  value: samlinkstorage1234
+- name: Container
+  value: test-vm
+- name: TfstateFile
+  value: test-vm/terraform.tfstate
  
 trigger:
 - none
