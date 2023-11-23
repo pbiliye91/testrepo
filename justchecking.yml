@@ -73,7 +73,7 @@ stages:
         command: 'plan'
       # workingDirectory: '$(workingDir)'
       # commandOptions: "--var-file=terraform.tfvars --out=tfplan"
-        commandOptions: '-var domain_join_password=$(domain_join_password)'
+      # commandOptions: '-var domain_join_password=$(domain_join_password)'
         environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
 - stage: deploy
   jobs:
@@ -109,5 +109,5 @@ stages:
                    provider: 'azurerm'
                    command: 'apply'
                #   commandOptions: '--var-file=terraform.tfvars'
-                   commandOptions: '-var domain_join_password=$(domain_join_password)'
+               #   commandOptions: '-var domain_join_password=$(domain_join_password)'
                    environmentServiceNameAzureRM: '${{ parameters.ServiceConnection }}'
