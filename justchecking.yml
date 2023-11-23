@@ -12,7 +12,6 @@ parameters:
       - windows-latest
       - ubuntu-latest
 variables:
-- group: djgroup
 - name: ResourceGroup
   value: r-sb-gen-dev-we-2
 - name: StorageAccount
