@@ -24,12 +24,12 @@ variables:
 - name: BuildAgent
   value: ${{ parameters.image }}
 - name: Environment
-  value: dev
+  value: test
   
  # Artifact: AM
  
 trigger:
-- dev
+- none
 
 pool:
   vmImage: $(BuildAgent)
