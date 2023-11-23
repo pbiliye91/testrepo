@@ -1,9 +1,9 @@
 parameters:
   - name: ServiceConnection
     displayName: Service Connection Name Follows Below:-
-    default: conn-sb-dev-we-1
+    default: conn-s-dev-we-1
     values:
-      - conn-sb-dev-we-1
+      - conn-s-dev-we-1
   - name: image
     displayName: PoolImage
     default: windows-latest
@@ -14,13 +14,13 @@ parameters:
 variables:
 - group: djgroup
 - name: ResourceGroup
-  value: rg-sb-gen-dev-we-2
+  value: r-sb-gen-dev-we-2
 - name: StorageAccount
-  value: stsbgendevwe2
+  value: stbgendevwe2
 - name: Container
-  value: stblc-sb-cnt-dev-we-2
+  value: stb-sb-cnt-dev-we-2
 - name: TfstateFile
-  value: tf1/terraform.tfstate
+  value: tf4/terraform.tfstate
 - name: BuildAgent
   value: ${{ parameters.image }}
 - name: Environment
