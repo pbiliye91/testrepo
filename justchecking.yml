@@ -29,7 +29,7 @@ variables:
  # Artifact: AM
  
 trigger:
-- none
+- main
 
 pool:
   vmImage: $(BuildAgent)
